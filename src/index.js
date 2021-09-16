@@ -14,7 +14,7 @@ $(function () {
 })
 
 function info(target) {
-    target.info = 'Person info'
+    target.info = 'Person info';；
 }
 
 

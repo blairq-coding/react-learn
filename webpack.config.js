@@ -1,5 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WebpackBar = require('webpackbar');
 
 const HtmlPlugin = require('html-webpack-plugin');
 //复制index.html并自动引入内容中生成的js
@@ -10,15 +11,18 @@ const htmlPlugin = new HtmlPlugin({
 
 module.exports = {
     mode: "development",
+    context: path.resolve(__dirname),
     entry: path.join(__dirname, "./src/index.js"),
     output: {
         path: path.join(__dirname, 'dist'),
         filename: "js/bundel.js"
     },
     devServer: {
-        open: true
+        open: true,
+        progress: true, //打包进度
+
     },
-    plugins: [htmlPlugin, new CleanWebpackPlugin()],
+    plugins: [htmlPlugin, new CleanWebpackPlugin(), new WebpackBar()],
     module: {
         rules: [
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
